@@ -1,4 +1,4 @@
-import { Role } from '../../data/model/interface/IUser.js';
+import { IReturnUser, Role } from '../../data/model/interface/IUser.js';
 
 export interface IUserAuthService {
   register: (
@@ -6,7 +6,7 @@ export interface IUserAuthService {
     email: string,
     password: string,
     role: Role
-  ) => Promise<any>;
+  ) => Promise<IReturnUser>;
   login: (email: string, password: string) => Promise<any>;
   logout: () => Promise<any>;
 }
