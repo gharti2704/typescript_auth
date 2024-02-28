@@ -4,11 +4,6 @@ export class UserModel {
     user_model = (Model);
     constructor() {
         const userSchema = new Schema({
-            id: {
-                type: String,
-                unique: true,
-                required: [true, 'id field is required'],
-            },
             name: {
                 type: String,
                 trim: true,
@@ -29,7 +24,7 @@ export class UserModel {
             salt: String,
             role: {
                 type: String,
-                default: 'subscriber',
+                default: 'user',
             },
             reset_password_link: {
                 type: String,

@@ -1,5 +1,5 @@
 import { userModel } from '../../data/index.js';
-export class UserService {
+export class UserRegisterService {
     register = async (name, email, password, role) => {
         try {
             //First check if the user already exists by email
@@ -33,4 +33,4 @@ export class UserService {
         }
     };
 }
-//# sourceMappingURL=UserServie.js.map
+//# sourceMappingURL=UserRegisterServie.js.map

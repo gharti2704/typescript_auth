@@ -1,18 +1,12 @@
 import * as crypto from 'crypto';
 import { model, Model, Schema } from 'mongoose';
-import { IUser } from './interface/IUser.js';
+import { IUserModel } from './interface/IUser.js';
 
 export class UserModel {
-  private user_model = Model<IUser>;
+  private user_model = Model<IUserModel>;
   constructor() {
-    const userSchema = new Schema<IUser>(
+    const userSchema = new Schema<IUserModel>(
       {
-        id: {
-          type: String,
-          unique: true,
-          required: [true, 'id field is required'],
-        },
-
         name: {
           type: String,
           trim: true,
@@ -37,7 +31,7 @@ export class UserModel {
 
         role: {
           type: String,
-          default: 'subscriber',
+          default: 'user',
         },
 
         reset_password_link: {
@@ -84,10 +78,10 @@ export class UserModel {
       },
     };
 
-    this.user_model = model<IUser>('User', userSchema);
+    this.user_model = model<IUserModel>('User', userSchema);
   }
 
-  get userModel(): Model<IUser> {
-    return this.user_model as Model<IUser>;
+  get userModel(): Model<IUserModel> {
+    return this.user_model as Model<IUserModel>;
   }
 }

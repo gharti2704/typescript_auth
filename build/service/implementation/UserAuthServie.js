@@ -1,5 +1,5 @@
 import { userModel } from '../../data/index.js';
-export class UserService {
+export class UserAuthService {
     register = async (name, email, password, role) => {
         try {
             //First check if the user already exists by email
@@ -7,7 +7,10 @@ export class UserService {
             if (user) {
                 throw new Error('User already exists');
             }
-            const newUser = userModel.create({ name, email, password, role });
+            const newUser = (await userModel.create({ name, email, password, role })).toObject();
+            newUser.id = newUser._id;
+            delete newUser.__v;
+            delete newUser._id;
             return newUser;
         }
         catch (err) {
@@ -33,4 +36,4 @@ export class UserService {
         }
     };
 }
-//# sourceMappingURL=UserServie.js.map
+//# sourceMappingURL=UserAuthServie.js.map

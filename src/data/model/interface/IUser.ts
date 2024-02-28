@@ -1,12 +1,33 @@
 import { Document } from 'mongoose';
-import { IUserMethods } from './IUserMethods.js';
 
-export interface IUser extends Document, IUserMethods {
-  id: string;
+export type Role = 'admin' | 'user';
+export interface IUserModel extends Document {
   name: string;
   email: string;
   hashed_password: string;
   salt: string;
-  role: string;
+  role: Role;
   reset_password_link: string;
+  createdAt: Date;
+  updatedAt: Date;
+  encryptPassword: (password: string) => string;
+  makeSalt: () => string;
+  authenticate: (plainText: string) => boolean;
+}
+
+export interface IRegisterUser {
+  name: string;
+  email: string;
+  password: string;
+  role: Role;
+}
+
+export interface IReturnUser {
+  id?: string;
+  name: string;
+  email: string;
+  role: Role;
+  reset_password_link: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
