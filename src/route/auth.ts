@@ -1,9 +1,14 @@
 import { Router } from 'express';
-import { AuthController } from '../controller/auth.js';
+import { AuthController } from '../controller/Auth.js';
+import { registerValidator, validate } from '../validator/index.js';
+import { UserAuthService } from '../service/implementation/UserAuthServie.js';
 
 const router = Router();
-const authController = new AuthController();
+const userAuthService = new UserAuthService();
+const authController = new AuthController(userAuthService);
 
-router.get('/register', authController.register);
+router.post('/register', registerValidator, validate, authController.register);
+router.get('/login', authController.login);
+router.get('/logout', authController.logout);
 
 export default router;
