@@ -3,7 +3,7 @@ import { model, Model, Schema } from 'mongoose';
 import { IUser } from './interface/IUser.js';
 
 export class UserModel {
-  private userModel = Model<IUser>;
+  private user_model = Model<IUser>;
   constructor() {
     const userSchema = new Schema<IUser>(
       {
@@ -24,6 +24,7 @@ export class UserModel {
           type: String,
           trim: true,
           lowercase: true,
+          unique: true,
           required: [true, 'Email is required'],
         },
 
@@ -41,6 +42,7 @@ export class UserModel {
 
         reset_password_link: {
           type: String,
+          data: String,
           default: '',
         },
       },
@@ -65,7 +67,7 @@ export class UserModel {
         if (!password) return '';
         try {
           return crypto
-            .createHmac('sha256', this.salt)
+            .createHmac('sha1', this.salt)
             .update(password)
             .digest('hex');
         } catch (err) {
@@ -82,10 +84,10 @@ export class UserModel {
       },
     };
 
-    this.userModel = model<IUser>('user', userSchema);
+    this.user_model = model<IUser>('User', userSchema);
   }
 
-  public getUserModel(): Model<IUser> {
-    return this.userModel as Model<IUser>;
+  get userModel(): Model<IUser> {
+    return this.user_model as Model<IUser>;
   }
 }

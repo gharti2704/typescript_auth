@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
 import { model, Model, Schema } from 'mongoose';
 export class UserModel {
-    userModel = (Model);
+    user_model = (Model);
     constructor() {
         const userSchema = new Schema({
             id: {
@@ -19,6 +19,7 @@ export class UserModel {
                 type: String,
                 trim: true,
                 lowercase: true,
+                unique: true,
                 required: [true, 'Email is required'],
             },
             hashed_password: {
@@ -32,6 +33,7 @@ export class UserModel {
             },
             reset_password_link: {
                 type: String,
+                data: String,
                 default: '',
             },
         }, { timestamps: true });
@@ -53,7 +55,7 @@ export class UserModel {
                     return '';
                 try {
                     return crypto
-                        .createHmac('sha256', this.salt)
+                        .createHmac('sha1', this.salt)
                         .update(password)
                         .digest('hex');
                 }
@@ -68,10 +70,10 @@ export class UserModel {
                 return this.encryptPassword(plainText) === this.hashed_password;
             },
         };
-        this.userModel = model('user', userSchema);
+        this.user_model = model('User', userSchema);
     }
-    getUserModel() {
-        return this.userModel;
+    get userModel() {
+        return this.user_model;
     }
 }
 //# sourceMappingURL=UserModel.js.map

@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.1",
+    "@types/cors": "^2.8.17",
+    "@types/morgan": "^1.9.9",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
