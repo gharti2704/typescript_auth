@@ -9,4 +9,4 @@ export class AuthController {
         res.status(200).send('Log out here');
     };
 }
-//# sourceMappingURL=auth.js.map
+//# sourceMappingURL=Auth.js.map

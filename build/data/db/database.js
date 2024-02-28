@@ -10,4 +10,4 @@ export class Database {
         }
     };
 }
-//# sourceMappingURL=database.js.map
+//# sourceMappingURL=Database.js.map
