@@ -28,9 +28,9 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/auth', router);
 
 const port = process.env.PORT || 8000;
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(
     `Server is running on http://localhost:${port} - ${process.env.NODE_ENV} mode`
   );
-  db.initDb();
+  await db.initDb();
 });
