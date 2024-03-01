@@ -1,4 +1,5 @@
 import { Router } from 'express';
+// @ts-ignore
 import { AuthController } from '../controller/Auth.js';
 import { registerValidator, validate } from '../validator/index.js';
 import { UserAuthService } from '../service/implementation/UserAuthService.js';
